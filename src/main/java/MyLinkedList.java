@@ -15,8 +15,7 @@ public class MyLinkedList {
         if (size == 0) {
             first = node;
             last = node;
-        }
-        else {
+        } else {
             node.prev = last;
             last.next = node;
             last = node;
@@ -35,7 +34,7 @@ public class MyLinkedList {
     }
 
     public void clear() {
-       Node node = first;
+        Node node = first;
 
         for (int i = 0; i < size - 1; i++) {
             node = node.next;
@@ -47,9 +46,9 @@ public class MyLinkedList {
         node.next = null;
         node.item = null;
         node.prev = null;
-       first = null;
-       last = null;
-       size = 0;
+        first = null;
+        last = null;
+        size = 0;
     }
 
     public int size() {
@@ -61,33 +60,24 @@ public class MyLinkedList {
     }
 
     private Node getNode(int index) {
-        if(index < 0 || index > size - 1) {
+        if (index < 0 || index > size - 1) {
             throw new RuntimeException("Not correct index");
         }
 
-        if( index == 0 ) {
+        if (index == 0) {
             return first;
         }
         Node node = first;
-        for(int i = 1; i < index; i++) {
+        for (int i = 1; i < index; i++) {
             node = node.next;
         }
         return node;
     }
 
-    @Override
-    public String toString() {
-        return "Node{" +
-                "item=" + MyLinkedList.Node.getItem() +
-                '}';
-    }
     private static class Node {
-        static Object item;
+        Object item;
         Node next;
         Node prev;
 
-        public static Object getItem() {
-            return item;
-        }
     }
 }

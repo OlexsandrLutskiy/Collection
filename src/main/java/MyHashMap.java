@@ -33,7 +33,7 @@ public class MyHashMap {
         if (size == 0) {
             return null;
         }
-        if(first.key.equals(key)) {
+        if (first.key.equals(key)) {
             Node next = first.next;
             Object value = first.value;
             first.next = null;
@@ -45,7 +45,7 @@ public class MyHashMap {
         Node node = first;
 
         while (node != null) {
-            Node next =node.next;
+            Node next = node.next;
             if (next != null && next.key.equals(key)) {
                 node.next = next.next;
                 Object value = next.value;
@@ -62,7 +62,7 @@ public class MyHashMap {
 
     public void clear() {
         Node node = first;
-        while(node != null) {
+        while (node != null) {
             Node nextNode = node.next;
             node.value = null;
             node.key = null;
@@ -77,11 +77,6 @@ public class MyHashMap {
     }
 
     public Object get(Object key) {
-        Node node = getNode(key);
-        return node == null ? null : node.value;
-    }
-
-    private Node getNode(Object key) {
         Node node = first;
 
         while (node != null) {

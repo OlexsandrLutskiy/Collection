@@ -10,7 +10,7 @@ public class MyArrayList {
     }
 
     public void add(Object value) {
-        if(objects.length == size) {
+        if (objects.length == size) {
             int newCapacity = (int) (objects.length * 1.5 + 1);
             objects = Arrays.copyOf(objects, newCapacity);
         }
@@ -18,7 +18,7 @@ public class MyArrayList {
     }
 
     public Object remove(int index) {
-        if(index < 0 || index > size - 1) {
+        if (index < 0 || index > size - 1) {
             throw new RuntimeException("Not correct index");
         }
         Object o = objects[index];
@@ -29,7 +29,7 @@ public class MyArrayList {
     }
 
     public void clear() {
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             objects[i] = null;
         }
         size = 0;
@@ -39,7 +39,7 @@ public class MyArrayList {
         return size;
     }
 
-   public Object get(int index) {
-       return objects[index];
-   }
- }
+    public Object get(int index) {
+        return objects[index];
+    }
+}

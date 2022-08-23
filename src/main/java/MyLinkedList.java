@@ -1,15 +1,11 @@
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Objects;
-
-public class MyLinkedList {
+public class MyLinkedList<E> {
 
     private int size = 0;
-    private Node first;
-    private Node last;
+    private Node<E> first;
+    private Node<E> last;
 
-    public void add(Object value) {
-        Node node = new Node();
+    public void add(E value) {
+        Node<E> node = new Node();
         node.item = value;
 
         if (size == 0) {
@@ -23,22 +19,32 @@ public class MyLinkedList {
         size++;
     }
 
-    public Object remove(int index) {
-        Node nodeToRemove = getNode(index);
-        Node prevNode = nodeToRemove.prev;
-        Node nextNode = nodeToRemove.next;
-        prevNode.next = nextNode;
-        nextNode.prev = prevNode;
+    public E remove(int index) {
+        Node<E> nodeToRemove = getNode(index);
 
+        if (index == 0) {
+            Node<E> nextNode = nodeToRemove.next;
+            nextNode.prev = null;
+        }
+        if (index == size - 1) {
+            Node<E> prevNode = nodeToRemove.prev;
+            prevNode.next = null;
+        } else {
+            Node<E> prevNode = nodeToRemove.prev;
+            Node<E> nextNode = nodeToRemove.next;
+            prevNode.next = nextNode;
+            nextNode.prev = prevNode;
+        }
+        size--;
         return nodeToRemove.item;
     }
 
     public void clear() {
-        Node node = first;
+        Node<E> node = first;
 
         for (int i = 0; i < size - 1; i++) {
             node = node.next;
-            Node prevNode = node.prev;
+            Node<E> prevNode = node.prev;
             prevNode.next = null;
             prevNode.item = null;
             prevNode.prev = null;
@@ -55,11 +61,11 @@ public class MyLinkedList {
         return size;
     }
 
-    public Object get(int index) {
+    public E get(int index) {
         return getNode(index).item;
     }
 
-    private Node getNode(int index) {
+    private Node<E> getNode(int index) {
         if (index < 0 || index > size - 1) {
             throw new RuntimeException("Not correct index");
         }
@@ -67,17 +73,17 @@ public class MyLinkedList {
         if (index == 0) {
             return first;
         }
-        Node node = first;
-        for (int i = 1; i < index; i++) {
+        Node<E> node = first;
+        for (int i = 0; i < index; i++) {
             node = node.next;
         }
         return node;
     }
 
-    private static class Node {
-        Object item;
-        Node next;
-        Node prev;
+    private static class Node<E> {
+        E item;
+        Node<E> next;
+        Node<E> prev;
 
     }
 }

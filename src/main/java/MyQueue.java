@@ -21,6 +21,7 @@ public class MyQueue {
         }
         Object o = objects[index];
         System.arraycopy(objects, index + 1, objects, index, size - index - 1);
+        size--;
         return o;
     }
 
